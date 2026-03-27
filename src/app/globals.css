@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap");
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
+
+:root {
+  --font-syne: "Syne", sans-serif;
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0a0b0e;
+    color: #e8e9ee;
+    font-family: var(--font-dm-sans);
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0e1020;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #252838;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b3f54;
+  }
+
+  ::selection {
+    background: rgba(0, 229, 255, 0.2);
+    color: #00e5ff;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-ink-700 border border-ink-500/30 rounded-2xl;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%
+    );
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .card-hover {
+    @apply bg-ink-700 border border-ink-500/30 rounded-2xl transition-all duration-300 hover:border-volt/20 hover:shadow-card-hover;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%
+    );
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm
+           bg-volt text-ink-900 transition-all duration-200
+           hover:bg-volt-400 hover:shadow-volt-glow active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display text-sm font-medium
+           bg-ink-600 border border-ink-400/40 text-ink-100 transition-all duration-200
+           hover:bg-ink-500 hover:border-ink-300/40 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium
+           text-ink-300 transition-all duration-200
+           hover:bg-ink-700 hover:text-ink-100 active:scale-95;
+  }
+
+  .input {
+    @apply w-full px-4 py-2.5 rounded-xl bg-ink-800 border border-ink-500/40 text-ink-100
+           placeholder:text-ink-400 text-sm font-body
+           focus:outline-none focus:border-volt/50 focus:bg-ink-700 focus:shadow-volt-glow-sm
+           transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium font-mono;
+  }
+
+  .badge-success {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium font-mono
+           bg-success/10 text-success border border-success/20;
+  }
+
+  .badge-danger {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium font-mono
+           bg-danger/10 text-danger border border-danger/20;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium font-mono
+           bg-warning/10 text-warning border border-warning/20;
+  }
+
+  .badge-volt {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium font-mono
+           bg-volt/10 text-volt border border-volt/20;
+  }
+
+  .badge-neutral {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium font-mono
+           bg-ink-600 text-ink-300 border border-ink-500/40;
+  }
+
+  .table-row-hover {
+    @apply hover:bg-ink-700/50 transition-colors duration-150;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #00e5ff 0%, #ffffff 50%, #f5a623 100%);
+  }
+
+  .dot-active {
+    @apply w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(0,208,132,0.6)];
+  }
+
+  .dot-inactive {
+    @apply w-2 h-2 rounded-full bg-ink-400;
+  }
+
+  .stat-card {
+    @apply bg-ink-700 border border-ink-500/30 rounded-2xl p-6 flex flex-col gap-3;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%
+    );
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           text-ink-300 transition-all duration-200
+           hover:bg-ink-600/70 hover:text-ink-100;
+  }
+
+  .nav-item-active {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           bg-ink-600/80 text-ink-50 border border-ink-500/30 transition-all duration-200;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -700px 0;
+  }
+  to {
+    background-position: 700px 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Staggered animations */
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+.stagger-5 {
+  animation-delay: 0.25s;
+}
+.stagger-6 {
+  animation-delay: 0.3s;
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Mesh gradient */
+.mesh-bg {
+  background-image:
+    radial-gradient(
+      at 40% 20%,
+      rgba(0, 229, 255, 0.07) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 80% 0%,
+      rgba(245, 166, 35, 0.04) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 0% 50%,
+      rgba(0, 229, 255, 0.03) 0px,
+      transparent 50%
+    );
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply rounded-lg;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 700px 100%;
+  animation: shimmer 2s linear infinite;
+}
