@@ -4,8 +4,9 @@ export async function GET() {
   const checks: Record<string, { status: "ok" | "error" | "unconfigured"; latency?: number }> = {};
 
   // ── Database ────────────────────────────────────────────────────────────────
-  if (process.env.DB_HOST) {
+  if (process.env.MYSQL_HOST) {
     const t = Date.now();
+    
     try {
       const { db } = await import("@/lib/db");
       await db.execute("SELECT 1");
