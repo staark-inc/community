@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [new URL("https://avatars.githubusercontent.com"), new URL("https://lh3.googleusercontent.com")],
   },
   reactCompiler: true,
+  serverExternalPackages: ["mysql2", "ioredis"],
 };
 
 export default nextConfig;
