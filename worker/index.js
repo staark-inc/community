@@ -12,7 +12,7 @@ console.log("[worker] Starting...");
 
 // Coadă emailuri
 const emailWorker = new Worker(
-  process.env.EMAIL_QUEUE_NAME || "staark:emails",
+  process.env.EMAIL_QUEUE_NAME || "staark-emails",
   async (job) => {
     console.log(`[worker] Processing email job: ${job.id}`, job.data);
     // TODO: implementează trimitere email via SMTP
@@ -24,7 +24,7 @@ const emailWorker = new Worker(
 
 // Coadă automatizări
 const autoWorker = new Worker(
-  process.env.AUTOMATION_QUEUE_NAME || "staark:automations",
+  process.env.AUTOMATION_QUEUE_NAME || "staark-automations",
   async (job) => {
     console.log(`[worker] Processing automation job: ${job.id}`, job.data);
     // TODO: implementează logica de automatizare
