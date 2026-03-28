@@ -12,7 +12,11 @@ export async function GET() {
       await db.execute("SELECT 1");
       checks.database = { status: "ok", latency: Date.now() - t };
     } catch (e) {
-      checks.database = { status: "error", latency: Date.now() - t, error: (e as Error).message };
+      checks.database = { 
+        status: "error", 
+        latency: Date.now() - t,
+        error: String(e)
+      };
     }
   } else {
     checks.database = { status: "unconfigured" };
