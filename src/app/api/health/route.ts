@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const checks: Record<string, { status: "ok" | "error" | "unconfigured"; latency?: number }> = {};
+  const checks: Record<string, { status: "ok" | "error" | "unconfigured"; latency?: number; error?: string }> = {};
 
   // ── Database ────────────────────────────────────────────────────────────────
   if (process.env.MYSQL_HOST) {
@@ -11,8 +11,8 @@ export async function GET() {
       const { db } = await import("@/lib/db");
       await db.execute("SELECT 1");
       checks.database = { status: "ok", latency: Date.now() - t };
-    } catch {
-      checks.database = { status: "error" };
+    } catch (e) {
+      checks.database = { status: "error", latency: Date.now() - t, error: (e as Error).message };
     }
   } else {
     checks.database = { status: "unconfigured" };
@@ -25,8 +25,8 @@ export async function GET() {
       const { redis } = await import("@/lib/redis");
       await redis.ping();
       checks.redis = { status: "ok", latency: Date.now() - t };
-    } catch {
-      checks.redis = { status: "error" };
+    } catch (e) {
+      checks.redis = { status: "error", latency: Date.now() - t, error: (e as Error).message };
     }
   } else {
     checks.redis = { status: "unconfigured" };
