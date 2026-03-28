@@ -1,5 +1,4 @@
-//import mysql from "mysql2/promise";
-import mysql from "/app/node_modules/mysql2/promise";
+import mysql from "mysql2/promise";
 
 export const db = mysql.createPool({
   host: process.env.DB_HOST,
